@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
+public class Main {
+    public static void main(String[] args) {
+
+        //Questions and answers
+        String[] questions = new String[5];
+        questions[0] = "What is Jacob's mouse's brand?";
+        questions[1] = "What type of phone is Jacob using?";
+        questions[2] = "What is Jacob's phone number?";
+        questions[3] = "Who inspired Jacob into learning Java?";
+        questions[4] = "What is Jacob's Discord username?";
+
+        String[] answers = new String[5];
+        answers[0] = "roccat";
+        answers[1] = "galaxy s8";
+        answers[2] = "3658888387";
+        answers[3] = "doctor4t";
+        answers[4] = "damku1214#0228";
+
+        int questioncount = 0;
+        int correctcount = 0;
+
+        //The literal single line of code lmao
+        question(questioncount, correctcount, questions, answers);
+    }
+    public static void question(int questioncount, int correctcount, String[] questions, String[] answers) {
+
+        while (true) {
+
+            //Question
+            if (questioncount == questions.length) {
+                System.out.println("Congratulations! You have finished the quiz with " + correctcount + " points! I hope you had fun!");
+                break;
+            }
+
+            System.out.println(questions[questioncount]);
+            Scanner answerscanner = new Scanner(System.in);
+            String answerinput = answerscanner.nextLine();
+
+            //Answer
+            if (answerinput.toLowerCase().equals(answers[questioncount])) {
+                correctcount++;
+                System.out.println("You are correct! +1 point! \n");
+                questioncount ++;
+            } else if (answerinput.equalsIgnoreCase("quit")) {
+                quit(questioncount, correctcount, questions, answers);
+                break;
+            } else {
+                System.out.println("You are wrong! The answer is " + answers[questioncount] + ". \n");
+                questioncount ++;
+            }
+        }
+    }
+    public static void quit(int questioncount, int correctcount, String[] questions, String[] answers) {
+
+        //Quit ask
+        System.out.println("Are you sure you want to quit?");
+        Scanner quit1scanner = new Scanner(System.in);
+        String quit1input = quit1scanner.nextLine();
+
+        //Quit
+        if (quit1input.equalsIgnoreCase("yes")) {
+            System.out.println("Ok then. Here are the results. \n");
+            System.out.println("Congratulations! You have finished the quiz with " + correctcount + " point(s)! I hope you had fun!");
+        } else if (quit1input.equalsIgnoreCase("no")) {
+            System.out.println("Ok then. Let us continue. \n");
+            question(questioncount, correctcount, questions, answers);
+        } else {
+            System.out.println("Uh.. I'll take that as a no. Let us continue. \n");
+                question(questioncount, correctcount, questions, answers);
+        }
+    }
+}
